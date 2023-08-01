@@ -27,11 +27,14 @@ public class VendingMachineView {
         System.out.printf("Dispensing %s...%n", item.getName());
     }
 
-    public void displayTransactionSummary(List<Slot> slots) {
+    public void displayTransactionSummary(TransactionHistory transactionHistory) {
         System.out.println("Items:");
-        for (Slot slot : slots) {
-            Item item = slot.getItem();
-            System.out.printf("%s: %d (price: %d)%n", item.getName(), slot.getQuantity(), item.getPrice());
+        for (Transaction transaction : transactionHistory.getTransactions()) {
+            System.out.printf("Item: %s, Quantity: %d, Total Price: %.2f, Timestamp: %s%n",
+                    transaction.getItem().toString(),
+                    transaction.getQuantity(),
+                    transaction.getTotalPrice(),
+                    transaction.getTimestamp());
         }
     }
 

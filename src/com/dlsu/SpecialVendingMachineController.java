@@ -1,15 +1,37 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
+/**
+ * The SpecialVendingMachineController class represents a controller for a special vending machine that extends the basic
+ * VendingMachineController. It adds additional features for customizing products with add-ons and handling change returns.
+ */
 public class SpecialVendingMachineController extends VendingMachineController {
     private SpecialVendingMachineModel model;
     private SpecialVendingMachineView view;
 
+    /**
+     * Constructs a SpecialVendingMachineController with the given dependencies.
+     *
+     * @param model   The SpecialVendingMachineModel instance associated with the special vending machine.
+     * @param view    The SpecialVendingMachineView instance responsible for displaying special vending machine operations.
+     * @param scanner The Scanner instance used for user input.
+     */
     public SpecialVendingMachineController(SpecialVendingMachineModel model, SpecialVendingMachineView view, Scanner scanner) {
         super(model, view, scanner);
         this.model = model;
         this.view = view;
     }
 
+    /**
+     * Allows customization of a product in the vending machine with add-ons.
+     * The method checks if the product is customizable, displays the available add-ons, and prompts the user for choices.
+     * It then calls the SpecialVendingMachineModel to handle the customization and returns any change if applicable.
+     *
+     * @param slotNumber The slot number of the product to be customized.
+     * @param scanner    The Scanner instance used for user input during customization.
+     */
     public void customizeProduct(int slotNumber, Scanner scanner) {
         Slot baseItemSlot = model.getSlots().get(slotNumber - 1);
         if (!model.checkIfCanCustomize(baseItemSlot)) {

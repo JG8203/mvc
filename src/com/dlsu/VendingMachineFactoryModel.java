@@ -10,13 +10,27 @@ public class VendingMachineFactoryModel {
         this.machine = null;
     }
 
+    /**
+    * Returns the vending machine. Note that this can be null in which case a machine is returned without any action.
+    * 
+    * 
+    * @return the vending machine or null if none is available for the current action ( such as an empty action
+    */
     public VendingMachineController getMachine() {
         return machine;
     }
 
+    /**
+    * Sets the vending machine. Used to communicate with the virtual machine when it is in the middle of a game
+    * 
+    * @param machine - the vending machine to
+    */
     public void setMachine(VendingMachineController machine) {
         this.machine = machine;
     }
+    /**
+    * Creates a vending machine that does not have any items. Note that this is different from the one used in createMachine ()
+    */
     public void createRegularVendingMachine() {
         List<Item> items = new ArrayList<>(Arrays.asList(
                 new Item("Bread", 20, 200, "base", "Placing"),
@@ -37,6 +51,9 @@ public class VendingMachineFactoryModel {
         this.machine = new VendingMachineController(machineModel, machineView, new Scanner(System.in));
     }
 
+    /**
+    * Creates a vending machine with special items and addons. Note that you cannot add items to the machine
+    */
     public void createSpecialVendingMachine() {
         // Create base items and addons
         Item bread = new Item("Bread", 20, 200, "base", "Placing");

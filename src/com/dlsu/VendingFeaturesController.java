@@ -3,17 +3,32 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * The VendingFeaturesController class represents a controller for handling various vending machine features
+ * like displaying items, inserting money, buying items, and customizing products (for special vending machines).
+ */
 public class VendingFeaturesController {
     private VendingMachineController machineController;
     private VendingFeaturesView view;
     private Scanner scanner;
-    
+
+    /**
+     * Constructs a VendingFeaturesController with the given dependencies.
+     *
+     * @param machineController The VendingMachineController instance associated with the vending machine.
+     * @param view              The VendingFeaturesView instance responsible for displaying vending machine feature options.
+     * @param scanner           The Scanner instance used for user input.
+     */
     public VendingFeaturesController(VendingMachineController machineController, VendingFeaturesView view, Scanner scanner) {
         this.machineController = machineController;
         this.view = view;
         this.scanner = scanner;
     }
 
+    /**
+     * Starts the vending features controller, displaying the main menu and handling user input until the user chooses to exit.
+     * The method processes user choices and delegates actions to the VendingMachineController accordingly.
+     */
     public void start() {
         while (true) {
             view.displayMenu();
