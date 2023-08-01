@@ -19,10 +19,11 @@ public class CoinBox {
         this.change.put(5, 100);
         this.change.put(10, 100);
         this.change.put(20, 100);
-        this.change.put(100, 100);
+        this.change.put(0, 100);
         this.change.put(200, 100);
         this.change.put(500, 100);
-        this.change.put(1000, 100);
+        this.change.put(00, 100);
+        this.change.put(00, 100);
     }
 
     /**
@@ -31,9 +32,13 @@ public class CoinBox {
      * @param bills A list of integers representing the bills to be added as funds.
      */
     public void addFunds(List<Integer> bills) {
-        for (int bill : bills) {
-            this.funds += bill;
-            this.change.put(bill, this.change.get(bill) + 1);
+        try {
+            for (int bill : bills) {
+                this.funds += bill;
+                this.change.put(bill, this.change.get(bill) + 1);
+            }
+        } catch (Exception e){
+            throw e;
         }
     }
 

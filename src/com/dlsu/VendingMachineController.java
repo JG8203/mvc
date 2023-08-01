@@ -25,9 +25,13 @@ public class VendingMachineController {
     * @param bills - List of Integer bill
     */
     public void insertMoney(List<Integer> bills) {
-        model.getCoinBox().addFunds(bills);
-        model.setBalance(model.getBalance() + bills.stream().mapToInt(Integer::intValue).sum());
-        view.displayBalance(model.getBalance());
+        try {
+            model.getCoinBox().addFunds(bills);
+            model.setBalance(model.getBalance() + bills.stream().mapToInt(Integer::intValue).sum());
+            view.displayBalance(model.getBalance());
+        } catch (Exception e){
+            System.out.println("Invalid denomination(s) or no change was detected. Exiting...");
+        }
     }
     /**
      * Attempts to buy an item from a specified slot number.
