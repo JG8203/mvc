@@ -77,7 +77,7 @@ public class VendingMachineFactoryModel {
 
         List<Slot> slots = new ArrayList<>();
         for (Item item : items) {
-            slots.add(new Slot(item, 10));  // Assuming Slot has a constructor Slot(Item, int)
+            slots.add(new Slot(item, 10));
         }
         SpecialVendingMachineModel machineModel = new SpecialVendingMachineModel(slots);
         SpecialVendingMachineView machineView = new SpecialVendingMachineView();
