@@ -1,26 +1,240 @@
-public class VendingMachineFactoryView {
-    public void displayMainMenu() {
-        System.out.println("==== Vending Machine Factory ====");
-        System.out.println("[1] Create a Vending Machine");
-        System.out.println("[2] Test a Vending Machine");
-        System.out.println("[3] Exit");
-        System.out.print("Enter choice: ");
+import java.awt.*;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class VendingMachineFactoryView{
+    private static final float CENTER_ALIGNMENT = 0;
+    JFrame mainMenu;
+    JButton createMachine;
+    JButton testMachine;
+    JButton exit;
+
+    JFrame createMenu;
+    JButton createRegular;
+    JButton createSpecial;
+    JButton back;
+
+    JFrame testMenu;
+    JButton vendingFeatures;
+    JButton maintenanceFeatures;
+    JButton testBack;
+
+    JFrame displayMaintenance;
+    JButton restock;
+    JButton setPrice;
+    JButton collect;
+    JButton replenish;
+    JButton printSummary;
+    JButton maintenanceBack;
+
+    JFrame itemRestockPrompt;
+    JTextField restockField;
+    JButton submitRestock;
+
+    JFrame quantityAddPrompt;
+    JTextField quantityField;
+    JButton submitQuantity;
+
+    JFrame slotPricePrompt;
+    JTextField slotField;
+    JButton submitSlot;
+
+    JFrame newPrice;
+    JTextField priceField;
+    JButton submitPrice;
+
+    JFrame denominationPrompt;
+    JTextField denominationField;
+    JButton submitDenomination;
+
+    public void disposeMainMenu(){
+        mainMenu.dispose();
     }
 
-    public void displayCreateMenu() {
-        System.out.println("==== Create a Vending Machine ====");
-        System.out.println("[1] Create a Regular Vending Machine");
-        System.out.println("[2] Create a Special Vending Machine");
-        System.out.println("[3] Back");
-        System.out.print("Enter choice: ");
+    public void displayMainMenu() {
+        mainMenu = new JFrame("Vending Machine Factory");
+        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenu.setSize(650, 300);
+        mainMenu.setResizable(false);
+        mainMenu.setLayout(new BorderLayout());
+
+        JPanel factoryHeader = new JPanel();
+        JLabel factoryText = new JLabel("Vending Machine Factory");
+        factoryText.setFont(new Font("Arial", Font.BOLD, 50));
+        factoryHeader.add(factoryText);
+        factoryHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        JPanel menuOptions = new JPanel();
+        menuOptions.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        createMachine = new JButton();
+        createMachine.setText("Create a Vending Machine");
+        createMachine.setBorder(null);
+        createMachine.setBackground(Color.gray);
+        createMachine.setFocusable(false);
+        createMachine.setPreferredSize(new Dimension(250, 50));
+
+        testMachine = new JButton();
+        testMachine.setText("Test a Vending Machine");
+        testMachine.setBorder(null);
+        testMachine.setBackground(Color.gray);
+        testMachine.setFocusable(false);
+        testMachine.setPreferredSize(new Dimension(250, 50));
+
+        exit = new JButton();
+        exit.setText("Exit");
+        exit.setBorder(null);
+        exit.setBackground(Color.gray);
+        exit.setFocusable(false);
+        exit.setPreferredSize(new Dimension(250, 50));
+
+        menuOptions.add(createMachine);
+        menuOptions.add(testMachine);
+        menuOptions.add(exit);
+        
+        mainMenu.add(factoryHeader, BorderLayout.NORTH);
+        mainMenu.add(menuOptions, BorderLayout.CENTER);
+
+        mainMenu.setVisible(true);
+    }
+
+    public void setCreateMachineAction(ActionListener e){
+        createMachine.addActionListener(e);
+    }
+
+    public void setTestMachineAction(ActionListener e){
+        testMachine.addActionListener(e);
+    }
+
+    public void setExitAction(ActionListener e){
+        exit.addActionListener(e);
+    }
+
+    public void disposeCreateMenu(){
+        createMenu.dispose();
+    }
+
+    public void displayCreateMenu(){
+        createMenu = new JFrame("Create a Vending Machine");
+        createMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createMenu.setSize(650, 300);
+        createMenu.setResizable(false);
+        createMenu.setLayout(new BorderLayout());
+
+        JPanel createHeader = new JPanel();
+        JLabel createText = new JLabel("Create a Vending Machine");
+        createText.setFont(new Font("Arial", Font.BOLD, 50));
+        createHeader.add(createText);
+        createHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        JPanel createOptions = new JPanel();
+        createOptions.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        createRegular = new JButton();
+        createRegular.setText("Create a Regular Vending Machine");
+        createRegular.setBorder(null);
+        createRegular.setBackground(Color.gray);
+        createRegular.setFocusable(false);
+        createRegular.setPreferredSize(new Dimension(250, 50));
+
+        createSpecial = new JButton();
+        createSpecial.setText("Create a Special Vending Machine");
+        createSpecial.setBorder(null);
+        createSpecial.setBackground(Color.gray);
+        createSpecial.setFocusable(false);
+        createSpecial.setPreferredSize(new Dimension(250, 50));
+
+        back = new JButton();
+        back.setText("back");
+        back.setBorder(null);
+        back.setBackground(Color.gray);
+        back.setFocusable(false);
+        back.setPreferredSize(new Dimension(250, 50));
+
+        createOptions.add(createRegular);
+        createOptions.add(createSpecial);
+        createOptions.add(back);
+
+        createMenu.add(createHeader, BorderLayout.NORTH);
+        createMenu.add(createOptions, BorderLayout.CENTER);
+
+        createMenu.setVisible(true);
+    }
+
+    public void setCreateRegularAction(ActionListener e){
+        createRegular.addActionListener(e);
+    }
+
+    public void setCreateSpecialAction(ActionListener e){
+        createSpecial.addActionListener(e);
+    }
+
+    public void setBackAction(ActionListener e){
+        back.addActionListener(e);
+    }
+
+    public void disposeTestMenu(){
+        testMenu.dispose();
     }
 
     public void displayTestMenu() {
-        System.out.println("==== Test a Vending Machine ====");
-        System.out.println("[1] Vending Features");
-        System.out.println("[2] Maintenance Features");
-        System.out.println("[3] Back");
-        System.out.print("Enter choice: ");
+        testMenu = new JFrame("Test Vending Machine");
+        testMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        testMenu.setSize(650, 300);
+        testMenu.setResizable(false);
+        testMenu.setLayout(new BorderLayout());
+
+        JPanel testHeader = new JPanel();
+        JLabel testText = new JLabel("Test the Vending Machine");
+        testText.setFont(new Font("Arial", Font.BOLD, 50));
+        testHeader.add(testText);
+        testHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        JPanel testOptions = new JPanel();
+        testOptions.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        vendingFeatures = new JButton();
+        vendingFeatures.setText("Vending Features");
+        vendingFeatures.setBorder(null);
+        vendingFeatures.setBackground(Color.gray);
+        vendingFeatures.setFocusable(false);
+        vendingFeatures.setPreferredSize(new Dimension(250, 50));
+
+        maintenanceFeatures = new JButton();
+        maintenanceFeatures.setText("Maintenance Features");
+        maintenanceFeatures.setBorder(null);
+        maintenanceFeatures.setBackground(Color.gray);
+        maintenanceFeatures.setFocusable(false);
+        maintenanceFeatures.setPreferredSize(new Dimension(250, 50));
+
+        testBack = new JButton();
+        testBack.setText("back");
+        testBack.setBorder(null);
+        testBack.setBackground(Color.gray);
+        testBack.setFocusable(false);
+        testBack.setPreferredSize(new Dimension(250, 50));
+
+        testOptions.add(vendingFeatures);
+        testOptions.add(maintenanceFeatures);
+        testOptions.add(testBack);
+
+        testMenu.add(testHeader, BorderLayout.NORTH);
+        testMenu.add(testOptions, BorderLayout.CENTER);
+
+        testMenu.setVisible(true);
+    }
+
+    public void setVendingFeaturesAction(ActionListener e){
+        vendingFeatures.addActionListener(e);
+    }
+
+    public void setMaintenanceFeaturesAction(ActionListener e){
+        maintenanceFeatures.addActionListener(e);
+    }
+
+    public void setTestBackAction(ActionListener e){
+        testBack.addActionListener(e);
     }
 
     public void displayVendingFeatures() {
@@ -33,7 +247,80 @@ public class VendingMachineFactoryView {
         System.out.print("Enter choice: ");
     }
 
+    public void disposeMaintenance(){
+        displayMaintenance.dispose();
+    }
+
     public void displayMaintenanceFeatures() {
+        displayMaintenance = new JFrame("Test Vending Machine");
+        displayMaintenance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        displayMaintenance.setSize(650, 600);
+        displayMaintenance.setResizable(false);
+        displayMaintenance.setLayout(new BorderLayout());
+
+        JPanel maintenanceHeader = new JPanel();
+        JLabel maintenanceText = new JLabel("Testing Features");
+        maintenanceText.setFont(new Font("Arial", Font.BOLD, 50));
+        maintenanceHeader.add(maintenanceText);
+        maintenanceHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        JPanel maintenanceOptions = new JPanel();
+        maintenanceOptions.setLayout(new GridLayout(2,3,5,5));
+
+        restock = new JButton();
+        restock.setText("Restock an Item");
+        restock.setBorder(null);
+        restock.setBackground(Color.gray);
+        restock.setFocusable(false);
+        restock.setPreferredSize(new Dimension(250, 50));
+
+        setPrice = new JButton();
+        setPrice.setText("Set Item Price");
+        setPrice.setBorder(null);
+        setPrice.setBackground(Color.gray);
+        setPrice.setFocusable(false);
+        setPrice.setPreferredSize(new Dimension(250, 50));
+
+        collect = new JButton();
+        collect.setText("Collect Payment");
+        collect.setBorder(null);
+        collect.setBackground(Color.gray);
+        collect.setFocusable(false);
+        collect.setPreferredSize(new Dimension(250, 50));
+
+        replenish = new JButton();
+        replenish.setText("Replenenish Money");
+        replenish.setBorder(null);
+        replenish.setBackground(Color.gray);
+        replenish.setFocusable(false);
+        replenish.setPreferredSize(new Dimension(250, 50));
+
+        printSummary = new JButton();
+        printSummary.setText("Print Transaction Summary");
+        printSummary.setBorder(null);
+        printSummary.setBackground(Color.gray);
+        printSummary.setFocusable(false);
+        printSummary.setPreferredSize(new Dimension(250, 50));
+
+        maintenanceBack = new JButton();
+        maintenanceBack.setText("back");
+        maintenanceBack.setBorder(null);
+        maintenanceBack.setBackground(Color.gray);
+        maintenanceBack.setFocusable(false);
+        maintenanceBack.setPreferredSize(new Dimension(250, 50));
+
+        maintenanceOptions.add(restock);
+        maintenanceOptions.add(setPrice);
+        maintenanceOptions.add(collect);
+        maintenanceOptions.add(replenish);
+        maintenanceOptions.add(printSummary);
+        maintenanceOptions.add(maintenanceBack);
+
+        displayMaintenance.add(maintenanceHeader, BorderLayout.NORTH);
+        displayMaintenance.add(maintenanceOptions, BorderLayout.CENTER);
+
+        displayMaintenance.setVisible(true);
+
         System.out.println("==== Maintenance Features ====");
         System.out.println("[1] Restock an item");
         System.out.println("[2] Set item price");
@@ -43,11 +330,38 @@ public class VendingMachineFactoryView {
         System.out.println("[6] Back");
         System.out.print("Enter choice: ");
     }
+
+    public void setRestockAction(ActionListener e){
+        restock.addActionListener(e);
+    }
+
+    public void setReplenishAction(ActionListener e){
+        replenish.addActionListener(e);
+    }
+
+    public void setCollectAction(ActionListener e){
+        collect.addActionListener(e);
+    }
+
+    public void setSetPriceAction(ActionListener e){
+        setPrice.addActionListener(e);
+    }
+
+    public void setPrintSummaryAction(ActionListener e){
+        printSummary.addActionListener(e);
+    }
+
+    public void setMaintenanceBackAction(ActionListener e){
+        maintenanceBack.addActionListener(e);
+    }
+
     public void displayRegularVendingMachineCreatedMessage() {
+        JOptionPane.showMessageDialog(null, "Regular vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
         System.out.println("Regular vending machine created.");
     }
 
     public void displaySpecialVendingMachineCreatedMessage() {
+        JOptionPane.showMessageDialog(null, "Special vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
         System.out.println("Special vending machine created.");
     }
 
@@ -60,26 +374,237 @@ public class VendingMachineFactoryView {
     }
 
     public void promptItemToRestock() {
+        itemRestockPrompt = new JFrame("Testing Features");
+        itemRestockPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        itemRestockPrompt.setSize(600, 150);
+        itemRestockPrompt.setResizable(false);
+        itemRestockPrompt.setLayout(new BorderLayout());
+
+        JPanel restockHeader = new JPanel();
+        JLabel restockText = new JLabel("Enter the number of the item you want to restock:");
+        restockText.setFont(new Font("Arial", Font.BOLD, 12));
+        restockHeader.add(restockText);
+        restockHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        restockField = new JTextField();
+        restockField.setPreferredSize(new Dimension(300,50));
+
+        JPanel restockPrompt = new JPanel();
+        restockPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        submitRestock = new JButton();
+        submitRestock.setText("Submit");
+        submitRestock.setBorder(null);
+        submitRestock.setBackground(Color.gray);
+        submitRestock.setFocusable(false);
+        submitRestock.setPreferredSize(new Dimension(250, 50));
+
+        itemRestockPrompt.add(restockHeader, BorderLayout.NORTH);
+        itemRestockPrompt.add(restockField, BorderLayout.CENTER);
+        itemRestockPrompt.add(submitRestock, BorderLayout.SOUTH);
+
+        itemRestockPrompt.setVisible(true);
+
         System.out.println("Enter the number of the item you want to restock:");
     }
 
+    public void setSubmitRestockAction(ActionListener e){
+        submitRestock.addActionListener(e);
+    }
+
+    public int getRestockField(){
+        return Integer.valueOf(restockField.getText());
+    }
+
+    public void disposeItemPrompt(){
+        itemRestockPrompt.dispose();
+    }
+
     public void promptQuantityToAdd() {
+        quantityAddPrompt = new JFrame("Testing Features");
+        quantityAddPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        quantityAddPrompt.setSize(600, 150);
+        quantityAddPrompt.setResizable(false);
+        quantityAddPrompt.setLayout(new BorderLayout());
+
+        JPanel quantityHeader = new JPanel();
+        JLabel quantityText = new JLabel("Enter the quantity you want to add:");
+        quantityText.setFont(new Font("Arial", Font.BOLD, 12));
+        quantityHeader.add(quantityText);
+        quantityHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        quantityField = new JTextField();
+        quantityField.setPreferredSize(new Dimension(300,50));
+
+        JPanel quantityPrompt = new JPanel();
+        quantityPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        submitQuantity = new JButton();
+        submitQuantity.setText("Submit");
+        submitQuantity.setBorder(null);
+        submitQuantity.setBackground(Color.gray);
+        submitQuantity.setFocusable(false);
+        submitQuantity.setPreferredSize(new Dimension(250, 50));
+
+        quantityAddPrompt.add(quantityHeader, BorderLayout.NORTH);
+        quantityAddPrompt.add(quantityField, BorderLayout.CENTER);
+        quantityAddPrompt.add(submitQuantity, BorderLayout.SOUTH);
+
+        quantityAddPrompt.setVisible(true);
+
         System.out.println("Enter the quantity you want to add:");
     }
 
+    public void setSubmitQuantityAction(ActionListener e){
+        submitQuantity.addActionListener(e);
+    }
+
+    public int getQuantityField(){
+        return Integer.valueOf(quantityField.getText());
+    }
+
+    public void disposeQuantity(){
+        quantityAddPrompt.dispose();
+    }
+
     public void promptItemForPriceChange() {
+        slotPricePrompt = new JFrame("Testing Features");
+        slotPricePrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        slotPricePrompt.setSize(600, 150);
+        slotPricePrompt.setResizable(false);
+        slotPricePrompt.setLayout(new BorderLayout());
+
+        JPanel slotHeader = new JPanel();
+        JLabel slotText = new JLabel("Enter the number of the item for which you want to set the price:");
+        slotText.setFont(new Font("Arial", Font.BOLD, 12));
+        slotHeader.add(slotText);
+        slotHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        slotField = new JTextField();
+        slotField.setPreferredSize(new Dimension(300,50));
+
+        JPanel slotPrompt = new JPanel();
+        slotPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        submitSlot = new JButton();
+        submitSlot.setText("Submit");
+        submitSlot.setBorder(null);
+        submitSlot.setBackground(Color.gray);
+        submitSlot.setFocusable(false);
+        submitSlot.setPreferredSize(new Dimension(250, 50));
+
+        slotPricePrompt.add(slotHeader, BorderLayout.NORTH);
+        slotPricePrompt.add(slotField, BorderLayout.CENTER);
+        slotPricePrompt.add(submitSlot, BorderLayout.SOUTH);
+
+        slotPricePrompt.setVisible(true);
         System.out.println("Enter the number of the item for which you want to set the price:");
     }
 
+    public void setSubmitSlotAction(ActionListener e){
+        submitSlot.addActionListener(e);
+    }
+
+    public int getSlotField(){
+        return Integer.valueOf(slotField.getText());
+    }
+
+    public void disposeSlot(){
+        slotPricePrompt.dispose();
+    }
+
     public void promptNewPrice() {
+        newPrice = new JFrame("Testing Features");
+        newPrice.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newPrice.setSize(600, 150);
+        newPrice.setResizable(false);
+        newPrice.setLayout(new BorderLayout());
+
+        JPanel priceHeader = new JPanel();
+        JLabel priceText = new JLabel("Enter the new price:");
+        priceText.setFont(new Font("Arial", Font.BOLD, 12));
+        priceHeader.add(priceText);
+        priceHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        priceField = new JTextField();
+        priceField.setPreferredSize(new Dimension(300,50));
+
+        JPanel pricePrompt = new JPanel();
+        pricePrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        submitPrice = new JButton();
+        submitPrice.setText("Submit");
+        submitPrice.setBorder(null);
+        submitPrice.setBackground(Color.gray);
+        submitPrice.setFocusable(false);
+        submitPrice.setPreferredSize(new Dimension(250, 50));
+
+        newPrice.add(priceHeader, BorderLayout.NORTH);
+        newPrice.add(priceField, BorderLayout.CENTER);
+        newPrice.add(submitPrice, BorderLayout.SOUTH);
+
+        newPrice.setVisible(true);
+
         System.out.println("Enter the new price:");
     }
 
+    public void setSubmitPriceAction(ActionListener e){
+        submitPrice.addActionListener(e);
+    }
+
+    public int getPriceField(){
+        return Integer.valueOf(priceField.getText());
+    }
+
+    public void disposePrice(){
+        newPrice.dispose();
+    }
+
     public void promptDenominationToReplenish() {
+        denominationPrompt = new JFrame("Testing Features");
+        denominationPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        denominationPrompt.setSize(600, 150);
+        denominationPrompt.setResizable(false);
+        denominationPrompt.setLayout(new BorderLayout());
+
+        JPanel denominationHeader = new JPanel();
+        JLabel denominationText = new JLabel("Enter the denomination you want to replenish:");
+        denominationText.setFont(new Font("Arial", Font.BOLD, 12));
+        denominationHeader.add(denominationText);
+        denominationHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        denominationField = new JTextField();
+        denominationField.setPreferredSize(new Dimension(300,50));
+
+        submitDenomination = new JButton();
+        submitDenomination.setText("Submit");
+        submitDenomination.setBorder(null);
+        submitDenomination.setBackground(Color.gray);
+        submitDenomination.setFocusable(false);
+        submitDenomination.setPreferredSize(new Dimension(250, 50));
+
+        denominationPrompt.add(denominationHeader, BorderLayout.NORTH);
+        denominationPrompt.add(denominationField, BorderLayout.CENTER);
+        denominationPrompt.add(submitDenomination, BorderLayout.SOUTH);
+
+        denominationPrompt.setVisible(true);
         System.out.println("Enter the denomination you want to replenish:");
     }
 
+    public void setDenominationAction(ActionListener e){
+        submitDenomination.addActionListener(e);
+    }
+
+    public int getDenominationField(){
+        return Integer.valueOf(denominationField.getText());
+    }
+
+    public void disposeDenomination(){
+        denominationPrompt.dispose();
+    }
+
     public void displayNoVendingMachineError() {
+        JOptionPane.showMessageDialog(null, "No vending machine created. Please create a vending machine first.", "Vending Machine Factory", JOptionPane.ERROR_MESSAGE, null);
         System.out.println("No vending machine created. Please create a vending machine first.");
     }
 

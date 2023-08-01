@@ -1,5 +1,8 @@
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.JPanel;
+
 import java.util.Map;
 public class VendingMachineController {
     private VendingMachineModel model;
@@ -21,6 +24,7 @@ public class VendingMachineController {
         model.setBalance(model.getBalance() + bills.stream().mapToInt(Integer::intValue).sum());
         view.displayBalance(model.getBalance());
     }
+    
     public void buyItem(int slotNumber) {
         if (slotNumber < 1 || slotNumber > model.getSlots().size()) {
             view.displayInvalidSlotNumber();

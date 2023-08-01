@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -6,16 +8,63 @@ import java.util.stream.Collectors;
 public class VendingFeaturesController {
     private VendingMachineController machineController;
     private VendingFeaturesView view;
-    private Scanner scanner;
     
-    public VendingFeaturesController(VendingMachineController machineController, VendingFeaturesView view, Scanner scanner) {
+    public VendingFeaturesController(VendingMachineController machineController, VendingFeaturesView view) {
         this.machineController = machineController;
         this.view = view;
-        this.scanner = scanner;
     }
 
     public void start() {
-        while (true) {
+        view.displayMenu();
+        
+        view.setDisplayItemsAction(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                machineController.displayItems();
+            }
+        });
+
+        view.setInsertAction(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.displayInsertMoneyPrompt();
+                view.setSubmitInsertAction(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        String temp = view.getInsertField();
+                        System.out.println(temp);
+                        List<Integer> bills = Arrays.stream(temp.split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+                        machineController.insertMoney(bills);
+                        view.disposeInsertMoney();
+                    }
+                });
+            }
+        });
+
+        view.setBuyItemAction(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.displayBuyItemPrompt();
+                view.setSubmitBuyAction(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        int slotNumber = view.getBuyField();
+                        view.disposeBuyPrompt();
+                        machineController.buyItem(slotNumber);
+                        
+                    }
+
+                });
+            }
+        });
+        
+        view.setCustomizeAction(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        });
+        /*while (true) {
             view.displayMenu();
             String choice = scanner.nextLine();
 
@@ -44,6 +93,6 @@ public class VendingFeaturesController {
             } else {
                 System.out.println("Invalid choice. Please try again.");
             }
-        }
+        }*/
     }
 }
