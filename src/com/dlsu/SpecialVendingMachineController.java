@@ -24,15 +24,19 @@ public class SpecialVendingMachineController extends VendingMachineController {
 
         view.displayAddOns(item.getIngredients());
         view.displaySelectAddOnPrompt();
+        view.displayAdded();
 
         view.setSubmitSelectAction(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 String choice = view.getCustomizeField();
+                
                 if (choice.toLowerCase().equals("done")) {
                     view.disposeCustomizePrompt();
                     view.disposeAddOns();
                 }
+                view.addAddOn(model.getSlots().get(Integer.valueOf(choice)-1).getItem());
+
                 choices.add(choice);
             }
         });

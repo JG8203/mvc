@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -20,6 +21,8 @@ public class SpecialVendingMachineView extends VendingMachineView {
     JFrame select;
     JTextField selectField;
     JButton submitSelect;
+
+    JFrame additional;
 
     public void displayAddOns(List<Item> addOns) {
         added = new JFrame();
@@ -104,6 +107,29 @@ public class SpecialVendingMachineView extends VendingMachineView {
 
     public void disposeAddOns(){
         added.dispose();
+    }
+
+    public void displayAdded(){
+        additional = new JFrame();
+        additional.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        additional.setSize(new Dimension(500,400));
+        additional.setResizable(false);
+        additional.setLayout(new FlowLayout());
+        additional.setTitle("Added Items");
+
+        additional.setVisible(true);
+    }
+
+    public void addAddOn(Item item){
+        JPanel itemPanel = new JPanel();
+        itemPanel.setLayout(null);
+
+        JLabel itemLabel = new JLabel(item.getName()+" Added");
+        itemLabel.setFont(new Font("Arial", Font.BOLD, 12));
+
+        itemPanel.add(itemLabel);
+
+        additional.add(itemPanel);
     }
 
 }
