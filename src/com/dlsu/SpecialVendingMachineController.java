@@ -34,9 +34,15 @@ public class SpecialVendingMachineController extends VendingMachineController {
         List<Item> selectedAddOns = new ArrayList<>();
 
         view.setSubmitSelectAction(new ActionListener() {
+            /**
+            * Handles the user clicking on the add - on button. This method is called when the user presses the Done button.
+            *
+            * @param e - The ActionEvent that caused the method to be called
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 String choice = view.getCustomizeField();
+
                 if (choice.toLowerCase().equals("done")) {
                     view.disposeCustomizePrompt();
                     view.disposeAddOns();

@@ -124,10 +124,18 @@ public class SpecialVendingMachineView extends VendingMachineView {
         select.dispose();
     }
 
+    /**
+    * Disposes the add - ons added by this object. This is called when the object is no longer needed
+    */
     public void disposeAddOns(){
         added.dispose();
     }
 
+    /**
+    * Displays a JFrame containing the list of Add - ons that were added to the application. It is assumed that the items are in the correct order
+    *
+    * @param selectedAddOns - a list of Item
+    */
     public void displayAdded(List<Item> selectedAddOns) {
         additional = new JFrame();
         additional.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -150,6 +158,11 @@ public class SpecialVendingMachineView extends VendingMachineView {
 
 
 
+    /**
+    * Adds an item to the add - on. This is a GUI and should be used in conjunction with #add ( Item )
+    *
+    * @param item - The item to add
+    */
     public void addAddOn(Item item) {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new GridLayout(1, 1));
@@ -173,6 +186,11 @@ public class SpecialVendingMachineView extends VendingMachineView {
         Timer timer = new Timer(100, new ActionListener() {
             private int counter = 0;
 
+            /**
+            * Increments the progress bar and stops the timer if the counter reaches 100. This is called when the user clicks on the button
+            *
+            * @param e - The ActionEvent that notified
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 counter++;
@@ -202,7 +220,6 @@ public class SpecialVendingMachineView extends VendingMachineView {
     * @return The delay in miliseconds to wait before the action is executed 0 if the action is not
     */
     private int determineDelay(String action) {
-        // The action to be performed.
         switch (action) {
             case "Slicing":
                 return 1000;  // 1 second delay
