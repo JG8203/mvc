@@ -1,12 +1,14 @@
 import java.awt.*;
+import java.util.List;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 public class VendingFeaturesView {
     private static final float CENTER_ALIGNMENT = 0;
+    private static final int CENTER = 0;
     JFrame features;
-    JButton displayItems;
+    //JButton displayItems;
     JButton insert;
     JButton buyItem;
     JButton customize;
@@ -26,19 +28,19 @@ public class VendingFeaturesView {
 
 
 
-    public void displayMenu() {
+    public void displayMenu(List<Slot> slots) {
         features = new JFrame("Vending Machine Factory");
         features.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         features.setSize(650, 800);
         features.setResizable(false);
-        features.setLayout(null);
+        features.setLayout(new FlowLayout());
 
-        displayItems = new JButton();
+        /*displayItems = new JButton();
         displayItems.setText("Display Items");
         displayItems.setBorder(null);
         displayItems.setBackground(Color.gray);
         displayItems.setFocusable(false);
-        displayItems.setBounds(450,400,200,50);
+        displayItems.setBounds(450,400,200,50);*/
 
         insert = new JButton();
         insert.setText("Insert Money");
@@ -68,7 +70,47 @@ public class VendingFeaturesView {
         back.setFocusable(false);
         back.setBounds(450,725,200,50);
 
-        features.add(displayItems);
+        JPanel stock = new JPanel();
+        stock.setLayout(new GridLayout(slots.size(), 2, 5, 5));
+        for (int i = 0; i < slots.size(); i++) {
+
+            Slot slot = slots.get(i);
+            Item item = slot.getItem();
+            JPanel info = new JPanel();
+            //info.setLayout(new GridLayout(4, 1, 5, 5));
+            //info.setBackground(Color.gray);
+
+            JPanel name = new JPanel();
+            JLabel nameLabel = new JLabel(i+1 +". "+item.getName());
+            nameLabel.setHorizontalAlignment(CENTER);
+            name.add(nameLabel);
+            
+
+            JPanel price = new JPanel();
+            JLabel priceLabel = new JLabel("Price: PHP"+item.getPrice());
+            priceLabel.setHorizontalAlignment(CENTER);
+            price.add(priceLabel);
+
+            JPanel calories = new JPanel();
+            JLabel caloriesLabel = new JLabel("Calories: "+item.getCalories());
+            caloriesLabel.setHorizontalAlignment(CENTER);
+            calories.add(caloriesLabel);
+
+            JPanel slotAmount = new JPanel();
+            JLabel slotAmountLabel = new JLabel("Quantity: "+slot.getQuantity());
+            slotAmountLabel.setHorizontalAlignment(CENTER);
+            slotAmount.add(slotAmountLabel);
+
+            info.add(name, BorderLayout.NORTH);
+            info.add(price);
+            info.add(calories);
+            info.add(slotAmount);
+
+            stock.add(info);
+
+        }
+        features.add(stock);
+        //features.add(displayItems);
         features.add(insert);
         features.add(buyItem);
         features.add(customize);
@@ -76,18 +118,6 @@ public class VendingFeaturesView {
 
 
         features.setVisible(true);
-
-        System.out.println("==== Vending Features ====");
-        System.out.println("[1] Display items");
-        System.out.println("[2] Insert money");
-        System.out.println("[3] Buy an item");
-        System.out.println("[4] Customize a product (Special Vending Machines only)");
-        System.out.println("[5] Back");
-        System.out.print("Enter choice: ");
-    }
-
-    public void setDisplayItemsAction(ActionListener e){
-        displayItems.addActionListener(e);
     }
 
     public void setInsertAction(ActionListener e){

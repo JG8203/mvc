@@ -15,14 +15,7 @@ public class VendingFeaturesController {
     }
 
     public void start() {
-        view.displayMenu();
-        
-        view.setDisplayItemsAction(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                machineController.displayItems();
-            }
-        });
+        view.displayMenu(machineController.getModel().getSlots());
 
         view.setInsertAction(new ActionListener(){
             @Override
@@ -77,7 +70,6 @@ public class VendingFeaturesController {
                 }
             }
         });
-
         view.setBackAction(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
