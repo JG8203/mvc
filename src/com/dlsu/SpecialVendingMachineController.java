@@ -14,12 +14,11 @@ public class SpecialVendingMachineController extends VendingMachineController {
 
     /**
     * Displays the add - ons to customize a product. This method is called when the user chooses to customize an item.
-    * 
+    *
     * @param slotNumber - The slot number of the product to customize
     */
     public void customizeProduct(int slotNumber) {
         Slot baseItemSlot = model.getSlots().get(slotNumber - 1);
-        // If the item slot is not allowed to be displayed.
         if (!model.checkIfCanCustomize(baseItemSlot)) {
             view.displayInsufficientBalance();
             return;
@@ -35,16 +34,9 @@ public class SpecialVendingMachineController extends VendingMachineController {
         List<Item> selectedAddOns = new ArrayList<>();
 
         view.setSubmitSelectAction(new ActionListener() {
-            /**
-            * Handles the user clicking on the add - on button. This method is called when the user presses the Done button.
-            * 
-            * @param e - The ActionEvent that caused the method to be called
-            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 String choice = view.getCustomizeField();
-
-                // Display the change after done is entered.
                 if (choice.toLowerCase().equals("done")) {
                     view.disposeCustomizePrompt();
                     view.disposeAddOns();
@@ -55,13 +47,11 @@ public class SpecialVendingMachineController extends VendingMachineController {
                     view.displayAdded(selectedAddOns); // Display the added items
 
                     Map<Integer, Integer> change = model.getCoinBox().returnChange(remainingBalance); // Get the change from the model
-                    // Display the change to the view.
                     if (change != null) {
                         view.displayChange(change); // Display the change
                     }
                 } else {
                     int addOnIndex = Integer.valueOf(choice) - 1;
-                    // Adds the selected add on to the list.
                     if (addOnIndex >= 0 && addOnIndex < addOns.size()) {
                         selectedAddOns.add(addOns.get(addOnIndex));
                         choices.add(choice);
