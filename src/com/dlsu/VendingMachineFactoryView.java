@@ -253,7 +253,7 @@ public class VendingMachineFactoryView{
 
     public void displayMaintenanceFeatures() {
         displayMaintenance = new JFrame("Test Vending Machine");
-        displayMaintenance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        displayMaintenance.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         displayMaintenance.setSize(650, 600);
         displayMaintenance.setResizable(false);
         displayMaintenance.setLayout(new BorderLayout());
@@ -320,15 +320,6 @@ public class VendingMachineFactoryView{
         displayMaintenance.add(maintenanceOptions, BorderLayout.CENTER);
 
         displayMaintenance.setVisible(true);
-
-        System.out.println("==== Maintenance Features ====");
-        System.out.println("[1] Restock an item");
-        System.out.println("[2] Set item price");
-        System.out.println("[3] Collect payment");
-        System.out.println("[4] Replenish money");
-        System.out.println("[5] Print transaction summary");
-        System.out.println("[6] Back");
-        System.out.print("Enter choice: ");
     }
 
     public void setRestockAction(ActionListener e){
@@ -357,20 +348,10 @@ public class VendingMachineFactoryView{
 
     public void displayRegularVendingMachineCreatedMessage() {
         JOptionPane.showMessageDialog(null, "Regular vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
-        System.out.println("Regular vending machine created.");
     }
 
     public void displaySpecialVendingMachineCreatedMessage() {
         JOptionPane.showMessageDialog(null, "Special vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
-        System.out.println("Special vending machine created.");
-    }
-
-    public void promptBillsToInsert() {
-        System.out.println("Enter the bills you want to insert, separated by spaces (e.g., '100 100 20'):");
-    }
-
-    public void promptItemToBuy() {
-        System.out.println("Enter the number of the item you want to buy:");
     }
 
     public void promptItemToRestock() {
@@ -404,8 +385,6 @@ public class VendingMachineFactoryView{
         itemRestockPrompt.add(submitRestock, BorderLayout.SOUTH);
 
         itemRestockPrompt.setVisible(true);
-
-        System.out.println("Enter the number of the item you want to restock:");
     }
 
     public void setSubmitRestockAction(ActionListener e){
@@ -451,8 +430,6 @@ public class VendingMachineFactoryView{
         quantityAddPrompt.add(submitQuantity, BorderLayout.SOUTH);
 
         quantityAddPrompt.setVisible(true);
-
-        System.out.println("Enter the quantity you want to add:");
     }
 
     public void setSubmitQuantityAction(ActionListener e){
@@ -498,7 +475,6 @@ public class VendingMachineFactoryView{
         slotPricePrompt.add(submitSlot, BorderLayout.SOUTH);
 
         slotPricePrompt.setVisible(true);
-        System.out.println("Enter the number of the item for which you want to set the price:");
     }
 
     public void setSubmitSlotAction(ActionListener e){
@@ -544,8 +520,6 @@ public class VendingMachineFactoryView{
         newPrice.add(submitPrice, BorderLayout.SOUTH);
 
         newPrice.setVisible(true);
-
-        System.out.println("Enter the new price:");
     }
 
     public void setSubmitPriceAction(ActionListener e){
@@ -588,7 +562,6 @@ public class VendingMachineFactoryView{
         denominationPrompt.add(submitDenomination, BorderLayout.SOUTH);
 
         denominationPrompt.setVisible(true);
-        System.out.println("Enter the denomination you want to replenish:");
     }
 
     public void setDenominationAction(ActionListener e){
@@ -605,10 +578,5 @@ public class VendingMachineFactoryView{
 
     public void displayNoVendingMachineError() {
         JOptionPane.showMessageDialog(null, "No vending machine created. Please create a vending machine first.", "Vending Machine Factory", JOptionPane.ERROR_MESSAGE, null);
-        System.out.println("No vending machine created. Please create a vending machine first.");
-    }
-
-    public void displayInvalidChoiceError() {
-        System.out.println("Invalid choice. Please try again.");
     }
 }

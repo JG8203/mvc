@@ -20,6 +20,10 @@ public class VendingFeaturesView {
     JTextField buyField;
     JButton submitBuy;
 
+    JFrame customizePrompt;
+    JTextField customizeField;
+    JButton submitCustomize;
+
 
 
     public void displayMenu() {
@@ -55,7 +59,7 @@ public class VendingFeaturesView {
         customize.setBorder(null);
         customize.setBackground(Color.gray);
         customize.setFocusable(false);
-        customize.setBounds(0,400,200,50);
+        customize.setBounds(0,600,400,50);
 
         back = new JButton();
         back.setText("Back");
@@ -67,6 +71,7 @@ public class VendingFeaturesView {
         features.add(displayItems);
         features.add(insert);
         features.add(buyItem);
+        features.add(customize);
         features.add(back);
 
 
@@ -175,7 +180,6 @@ public class VendingFeaturesView {
         buyPrompt.add(submitBuy, BorderLayout.SOUTH);
 
         buyPrompt.setVisible(true);
-        System.out.println("Enter the number of the item you want to buy:");
     }
 
     public void setSubmitBuyAction(ActionListener e){
@@ -190,7 +194,56 @@ public class VendingFeaturesView {
         buyPrompt.dispose();
     }
     
+    public void disposeCustomizeProductPrompt(){
+        customizePrompt.dispose();
+    }
     public void displayCustomizeProductPrompt() {
-        System.out.println("Enter the number of the base item you want to customize:");
+        customizePrompt = new JFrame("Customize Item");
+        customizePrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        customizePrompt.setSize(600, 150);
+        customizePrompt.setResizable(false);
+        customizePrompt.setLayout(new BorderLayout());
+
+        JPanel customizeHeader = new JPanel();
+        JLabel customizeText = new JLabel("Enter the number of the base item you want to customize:");
+        customizeText.setFont(new Font("Arial", Font.BOLD, 12));
+        customizeHeader.add(customizeText);
+        customizeHeader.setAlignmentX(CENTER_ALIGNMENT);
+
+        customizeField = new JTextField();
+        customizeField.setPreferredSize(new Dimension(300,50));
+
+        submitCustomize = new JButton();
+        submitCustomize.setText("Submit");
+        submitCustomize.setBorder(null);
+        submitCustomize.setBackground(Color.gray);
+        submitCustomize.setFocusable(false);
+        submitCustomize.setPreferredSize(new Dimension(250, 50));
+
+        customizePrompt.add(customizeHeader, BorderLayout.NORTH);
+        customizePrompt.add(customizeField, BorderLayout.CENTER);
+        customizePrompt.add(submitCustomize, BorderLayout.SOUTH);
+
+        customizePrompt.setVisible(true);
+    }
+
+    public void setSubmitCustomizeAction(ActionListener e){
+        submitCustomize.addActionListener(e);
+    }
+
+    public int getCustomizeField(){
+        return Integer.valueOf(customizeField.getText());
+    }
+
+    public void disposeCustomizePrompt(){
+        customizePrompt.dispose();
+    }
+
+    public void disposeFeatures(){
+        features.dispose();
+    }
+
+    public void displayInvalidChoice(){
+        JOptionPane.showMessageDialog(null, "Invalid choice. Please try again.", "Vending Machine", JOptionPane.ERROR_MESSAGE, null);
     }
 }
