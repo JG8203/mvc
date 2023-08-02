@@ -79,5 +79,9 @@ public class VendingMachineController {
     public void printTransactionSummary() {
         view.displayTransactionSummary(model.getTransactionHistory());
     }
+
+    public VendingMachineModel getModel() {
+        return model;
+    }
 }
 

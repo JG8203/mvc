@@ -77,11 +77,27 @@ public class VendingMachineModel {
         return change;
     }
     public void restock(int slotNumber, int quantity) {
-        if (slotNumber < 1 || slotNumber > this.slots.size()) {
+        if (!isValidSlot(slotNumber) || !isValidQuantity(quantity)) {
             return;
         }
-        Slot slot = this.slots.get(slotNumber - 1);
-        slot.setQuantity(slot.getQuantity() + quantity);
+
+        Slot slot = slots.get(slotNumber - 1);
+        int currentQuantity = slot.getQuantity();
+        int maxQuantity = slot.getMaxQuantity();
+
+        if (currentQuantity < maxQuantity) {
+            int availableSpace = maxQuantity - currentQuantity;
+            int restockQuantity = Math.min(availableSpace, quantity);
+            slot.setQuantity(currentQuantity + restockQuantity);
+        }
+    }
+
+    private boolean isValidSlot(int slotNumber) {
+        return slotNumber >= 1 && slotNumber <= slots.size();
+    }
+
+    private boolean isValidQuantity(int quantity) {
+        return quantity > 0;
     }
 
     public void setItemPrice(int slotNumber, int price) {

@@ -142,18 +142,44 @@ public class VendingFeaturesView {
     public void displayInsertMoneyPrompt() {
         insertPrompt = new JFrame("Insert Bills");
         insertPrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        insertPrompt.setSize(600, 150);
         insertPrompt.setResizable(false);
         insertPrompt.setLayout(new BorderLayout());
 
         JPanel insertHeader = new JPanel();
-        JLabel insertText = new JLabel("Enter the bills you want to insert, separated by spaces (e.g., '100 100 20'):");
+        JLabel insertText = new JLabel("Enter the bills you want to insert by clicking the buttons:");
         insertText.setFont(new Font("Arial", Font.BOLD, 12));
         insertHeader.add(insertText);
         insertHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         insertField = new JTextField();
-        insertField.setPreferredSize(new Dimension(300,50));
+        insertField.setPreferredSize(new Dimension(300, 50));
+        insertField.setEditable(false);
+
+        JPanel buttonsPanel = new JPanel();
+        int[] denominations = {1, 5, 10, 20, 100, 200, 500, 1000};
+        StringBuilder stringBuilder = new StringBuilder();
+
+        JPanel denominationsPanel = new JPanel();
+        denominationsPanel.setLayout(new GridLayout(denominations.length, 1));
+        JLabel[] denominationLabels = new JLabel[denominations.length];
+        int[] denominationCounts = new int[denominations.length];
+
+        for (int i = 0; i < denominations.length; i++) {
+            int denomination = denominations[i];
+            JButton button = new JButton(String.valueOf(denomination));
+            button.setPreferredSize(new Dimension(100, 50));
+            final int index = i;
+            button.addActionListener(e -> {
+                denominationCounts[index]++;
+                denominationLabels[index].setText(denomination + " x " + denominationCounts[index]);
+                stringBuilder.append(denomination).append(" ");
+                insertField.setText(stringBuilder.toString().trim());
+            });
+            buttonsPanel.add(button);
+
+            denominationLabels[i] = new JLabel(denomination + " x " + 0);
+            denominationsPanel.add(denominationLabels[i]);
+        }
 
         submitInsert = new JButton();
         submitInsert.setText("Submit");
@@ -164,12 +190,15 @@ public class VendingFeaturesView {
 
         insertPrompt.add(insertHeader, BorderLayout.NORTH);
         insertPrompt.add(insertField, BorderLayout.CENTER);
+        insertPrompt.add(buttonsPanel, BorderLayout.WEST);
+        insertPrompt.add(denominationsPanel, BorderLayout.EAST);
         insertPrompt.add(submitInsert, BorderLayout.SOUTH);
 
+        insertPrompt.pack(); // Adjusts the frame size to fit the content
+        insertPrompt.setLocationRelativeTo(null); // Centers the frame on the screen
         insertPrompt.setVisible(true);
-        System.out.println("Enter the bills you want to insert, separated by spaces (e.g., '100 100 20'):");
+        System.out.println("Enter the bills you want to insert by clicking the buttons:");
     }
-
     public void setSubmitInsertAction(ActionListener e){
         submitInsert.addActionListener(e);
     }
@@ -181,7 +210,7 @@ public class VendingFeaturesView {
     public void disposeItemPrompt(){
         insertPrompt.dispose();
     }
-    
+
     public void displayBuyItemPrompt() {
         buyPrompt = new JFrame("Buy Item");
         buyPrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
