@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
+    /**
+    * Entry point for the VendingMachineFactoryController. Creates a Scanner to read user input creates instances of the factory model view controller and starts the application
+    * 
+    * @param args - Command line arguments ( ignored
+    */
     public static void main(String[] args) {
         // Create a Scanner to read user input
         Scanner scanner = new Scanner(System.in);

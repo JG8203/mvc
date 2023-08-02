@@ -21,6 +21,11 @@ public class SpecialVendingMachineView extends VendingMachineView {
 
     JFrame additional;
 
+    /**
+    * Displays add - ons in a JFrame. It is used to add a new add - on
+    * 
+    * @param addOns - List of items to
+    */
     public void displayAddOns(List<Item> addOns) {
         added = new JFrame();
         added.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,6 +36,7 @@ public class SpecialVendingMachineView extends VendingMachineView {
         
         added.setVisible(true);
         System.out.println("Available add-ons:");
+        // Add add ons to the list.
         for (int i = 0; i < addOns.size(); i++) {
             Item addOn = addOns.get(i);
             JPanel info = new JPanel();
@@ -60,6 +66,9 @@ public class SpecialVendingMachineView extends VendingMachineView {
         }
     }
 
+    /**
+    * Displays the select add - on prompt to select the number of the add - on you want to include
+    */
     public void displaySelectAddOnPrompt() {
         select = new JFrame("Select Add-On");
         select.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -90,22 +99,44 @@ public class SpecialVendingMachineView extends VendingMachineView {
         select.setVisible(true);
     }
 
+    /**
+    * Sets the action that is performed when the user clicks on the submit button. This is useful for adding actions to the list of actions that are performed when the user clicks on the " Select " button
+    * 
+    * @param e - The action that is
+    */
     public void setSubmitSelectAction(ActionListener e){
         submitSelect.addActionListener(e);
     }
 
+    /**
+    * Returns the text that should be displayed in the customize field. This is a convenience method for #selectField.
+    * 
+    * 
+    * @return the text that should be displayed in the customize field or null if there is no text to be displayed
+    */
     public String getCustomizeField(){
         return selectField.getText();
     }
 
+    /**
+    * Disposes the CustomizePrompt and frees the resources. This is called when the user clicks the Cancel
+    */
     public void disposeCustomizePrompt(){
         select.dispose();
     }
 
+    /**
+    * Disposes the add - ons added by this object. This is called when the object is no longer needed
+    */
     public void disposeAddOns(){
         added.dispose();
     }
 
+    /**
+    * Displays a JFrame containing the list of Add - ons that were added to the application. It is assumed that the items are in the correct order
+    * 
+    * @param selectedAddOns - a list of Item
+    */
     public void displayAdded(List<Item> selectedAddOns) {
         additional = new JFrame();
         additional.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -128,6 +159,11 @@ public class SpecialVendingMachineView extends VendingMachineView {
 
 
 
+    /**
+    * Adds an item to the add - on. This is a GUI and should be used in conjunction with #add ( Item )
+    * 
+    * @param item - The item to add
+    */
     public void addAddOn(Item item) {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new GridLayout(1, 1));
@@ -151,12 +187,18 @@ public class SpecialVendingMachineView extends VendingMachineView {
         Timer timer = new Timer(100, new ActionListener() {
             private int counter = 0;
 
+            /**
+            * Increments the progress bar and stops the timer if the counter reaches 100. This is called when the user clicks on the button
+            * 
+            * @param e - The ActionEvent that notified
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 counter++;
                 progressBar.setValue(counter);
 
                 // When the counter reaches 100, stop the timer
+                // Stop the timer if the counter is less than 100.
                 if (counter >= 100) {
                     ((Timer) e.getSource()).stop();
                 }
@@ -172,7 +214,15 @@ public class SpecialVendingMachineView extends VendingMachineView {
         additional.repaint();
     }
 
+    /**
+    * Determines the delay based on the action. This is used to determine how long to wait before an action is executed
+    * 
+    * @param action - The action to determine the delay for
+    * 
+    * @return The delay in miliseconds to wait before the action is executed 0 if the action is not
+    */
     private int determineDelay(String action) {
+        // The action to be performed.
         switch (action) {
             case "Slicing":
                 return 1000;  // 1 second delay

@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class VendingMachineFactoryView{
+public class VendingMachineFactoryView {
     private static final float CENTER_ALIGNMENT = 0;
     JFrame mainMenu;
     JButton createMachine;
@@ -48,10 +48,16 @@ public class VendingMachineFactoryView{
     JTextField denominationField;
     JButton submitDenomination;
 
-    public void disposeMainMenu(){
+    /**
+     * Disposes and frees the main menu. This is called when the application is destroyed and can be re - used
+     */
+    public void disposeMainMenu() {
         mainMenu.dispose();
     }
 
+    /**
+     * Displays the main menu for Vending Machine Factory. It is used to create a machine and test it
+     */
     public void displayMainMenu() {
         mainMenu = new JFrame("Vending Machine Factory");
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,30 +98,51 @@ public class VendingMachineFactoryView{
         menuOptions.add(createMachine);
         menuOptions.add(testMachine);
         menuOptions.add(exit);
-        
+
         mainMenu.add(factoryHeader, BorderLayout.NORTH);
         mainMenu.add(menuOptions, BorderLayout.CENTER);
 
         mainMenu.setVisible(true);
     }
 
-    public void setCreateMachineAction(ActionListener e){
+    /**
+     * Sets the action that is performed when a machine is created. This action will be performed on the UI thread
+     * 
+     * @param e - the action that is
+     */
+    public void setCreateMachineAction(ActionListener e) {
         createMachine.addActionListener(e);
     }
 
-    public void setTestMachineAction(ActionListener e){
+    /**
+     * Sets the action listener for the test machine. This is used to notify the JUnit test machine that something has changed in the test machine
+     * 
+     * @param e - the action listener to
+     */
+    public void setTestMachineAction(ActionListener e) {
         testMachine.addActionListener(e);
     }
 
-    public void setExitAction(ActionListener e){
+    /**
+     * Sets the action that is performed when the user presses the exit button. This is useful for cases where you want to exit from a program without knowing the user's input.
+     * 
+     * @param e - The action that is performed when the user press
+     */
+    public void setExitAction(ActionListener e) {
         exit.addActionListener(e);
     }
 
-    public void disposeCreateMenu(){
+    /**
+     * Disposes the menu created by createMenu (). This is called when the user clicks the Create button
+     */
+    public void disposeCreateMenu() {
         createMenu.dispose();
     }
 
-    public void displayCreateMenu(){
+    /**
+     * Displays the menu to create a vending machine. It is displayed in the center of the screen and can be clicked
+     */
+    public void displayCreateMenu() {
         createMenu = new JFrame("Create a Vending Machine");
         createMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         createMenu.setSize(650, 300);
@@ -162,22 +189,43 @@ public class VendingMachineFactoryView{
         createMenu.setVisible(true);
     }
 
-    public void setCreateRegularAction(ActionListener e){
+    /**
+     * Sets the action that is performed when the user clicks on the create regular button. This is useful for creating regular files that are not part of the file system.
+     * 
+     * @param e - the action that is performed when the user clicks
+     */
+    public void setCreateRegularAction(ActionListener e) {
         createRegular.addActionListener(e);
     }
 
-    public void setCreateSpecialAction(ActionListener e){
+    /**
+     * Sets the action that is performed when a special item is created. This action is performed when the user clicks on the create special button
+     * 
+     * @param e - the action that is
+     */
+    public void setCreateSpecialAction(ActionListener e) {
         createSpecial.addActionListener(e);
     }
 
-    public void setBackAction(ActionListener e){
+    /**
+     * Sets the action that is triggered when the user presses the back button. Note that this action will be triggered on the UI thread
+     * 
+     * @param e - the action that is
+     */
+    public void setBackAction(ActionListener e) {
         back.addActionListener(e);
     }
 
-    public void disposeTestMenu(){
+    /**
+     * Disposes the test menu. This is called when the user clicks the Cancel button in the menu or when the menu is re - created
+     */
+    public void disposeTestMenu() {
         testMenu.dispose();
     }
 
+    /**
+     * Displays the menu for testing vending features and a list of options to choose which vending features are
+     */
     public void displayTestMenu() {
         testMenu = new JFrame("Test Vending Machine");
         testMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -225,18 +273,36 @@ public class VendingMachineFactoryView{
         testMenu.setVisible(true);
     }
 
-    public void setVendingFeaturesAction(ActionListener e){
+    /**
+     * Sets the action that is notified when vending features are pressed. This is a no - op if there is no vending features
+     * 
+     * @param e - the action that is
+     */
+    public void setVendingFeaturesAction(ActionListener e) {
         vendingFeatures.addActionListener(e);
     }
 
-    public void setMaintenanceFeaturesAction(ActionListener e){
+    /**
+     * Sets the action that is notified when maintenance features are enabled. This is a convenience method for adding an ActionListener to the MaintenanceFeatures list
+     * 
+     * @param e - the action to be
+     */
+    public void setMaintenanceFeaturesAction(ActionListener e) {
         maintenanceFeatures.addActionListener(e);
     }
 
-    public void setTestBackAction(ActionListener e){
+    /**
+     * Sets the action that is executed when the user presses the back button. This action will be executed in the test case and not in the test case
+     * 
+     * @param e - the action that is
+     */
+    public void setTestBackAction(ActionListener e) {
         testBack.addActionListener(e);
     }
 
+    /**
+     * Displays vending features for the user to choose which features to use when choosing a vending order
+     */
     public void displayVendingFeatures() {
         System.out.println("==== Vending Features ====");
         System.out.println("[1] Display items");
@@ -247,10 +313,16 @@ public class VendingMachineFactoryView{
         System.out.print("Enter choice: ");
     }
 
-    public void disposeMaintenance(){
+    /**
+     * Disposes of the maintenance window. This is called when the user clicks the Cancel button in the maintenance
+     */
+    public void disposeMaintenance() {
         displayMaintenance.dispose();
     }
 
+    /**
+     * Creates and displays the maintenance features for the vending machine.
+     */
     public void displayMaintenanceFeatures() {
         displayMaintenance = new JFrame("Test Vending Machine");
         displayMaintenance.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -265,7 +337,7 @@ public class VendingMachineFactoryView{
         maintenanceHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         JPanel maintenanceOptions = new JPanel();
-        maintenanceOptions.setLayout(new GridLayout(2,3,5,5));
+        maintenanceOptions.setLayout(new GridLayout(2, 3, 5, 5));
 
         restock = new JButton();
         restock.setText("Restock an Item");
@@ -321,39 +393,70 @@ public class VendingMachineFactoryView{
 
         displayMaintenance.setVisible(true);
     }
-
-    public void setRestockAction(ActionListener e){
+    /**
+     * Adds an action listener for the restock button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setRestockAction(ActionListener e) {
         restock.addActionListener(e);
     }
 
-    public void setReplenishAction(ActionListener e){
+    /**
+     * Adds an action listener for the replenish button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setReplenishAction(ActionListener e) {
         replenish.addActionListener(e);
     }
-
-    public void setCollectAction(ActionListener e){
+    /**
+     * Adds an action listener for the collect button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setCollectAction(ActionListener e) {
         collect.addActionListener(e);
     }
-
-    public void setSetPriceAction(ActionListener e){
+    /**
+     * Adds an action listener for the set price button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setSetPriceAction(ActionListener e) {
         setPrice.addActionListener(e);
     }
-
-    public void setPrintSummaryAction(ActionListener e){
+    /**
+     * Adds an action listener for the print transaction summary button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setPrintSummaryAction(ActionListener e) {
         printSummary.addActionListener(e);
     }
-
-    public void setMaintenanceBackAction(ActionListener e){
+    /**
+     * Adds an action listener for the maintenance back button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setMaintenanceBackAction(ActionListener e) {
         maintenanceBack.addActionListener(e);
     }
-
+    /**
+     * Displays a message indicating that a regular vending machine has been created.
+     */
     public void displayRegularVendingMachineCreatedMessage() {
         JOptionPane.showMessageDialog(null, "Regular vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
     }
-
+    /**
+     * Displays a message indicating that a special vending machine has been created.
+     */
     public void displaySpecialVendingMachineCreatedMessage() {
         JOptionPane.showMessageDialog(null, "Special vending machine created.", "Vending Machine Factory", JOptionPane.INFORMATION_MESSAGE, null);
     }
-
+    /**
+     * Prompts the user to select an item to restock.
+     */
     public void promptItemToRestock() {
         itemRestockPrompt = new JFrame("Testing Features");
         itemRestockPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -368,7 +471,7 @@ public class VendingMachineFactoryView{
         restockHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         restockField = new JTextField();
-        restockField.setPreferredSize(new Dimension(300,50));
+        restockField.setPreferredSize(new Dimension(300, 50));
 
         JPanel restockPrompt = new JPanel();
         restockPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -386,19 +489,31 @@ public class VendingMachineFactoryView{
 
         itemRestockPrompt.setVisible(true);
     }
-
-    public void setSubmitRestockAction(ActionListener e){
+    /**
+     * Sets the action listener for the restock submission button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setSubmitRestockAction(ActionListener e) {
         submitRestock.addActionListener(e);
     }
-
-    public int getRestockField(){
+    /**
+     * Retrieves the value from the restock field.
+     *
+     * @return the number of the item to be restocked
+     */
+    public int getRestockField() {
         return Integer.valueOf(restockField.getText());
     }
-
-    public void disposeItemPrompt(){
+    /**
+     * Disposes of the item restock prompt.
+     */
+    public void disposeItemPrompt() {
         itemRestockPrompt.dispose();
     }
-
+    /**
+     * Prompts the user to enter the quantity of an item to add.
+     */
     public void promptQuantityToAdd() {
         quantityAddPrompt = new JFrame("Testing Features");
         quantityAddPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -413,7 +528,7 @@ public class VendingMachineFactoryView{
         quantityHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         quantityField = new JTextField();
-        quantityField.setPreferredSize(new Dimension(300,50));
+        quantityField.setPreferredSize(new Dimension(300, 50));
 
         JPanel quantityPrompt = new JPanel();
         quantityPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -431,19 +546,31 @@ public class VendingMachineFactoryView{
 
         quantityAddPrompt.setVisible(true);
     }
-
-    public void setSubmitQuantityAction(ActionListener e){
+    /**
+     * Sets the action listener for the quantity submission button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setSubmitQuantityAction(ActionListener e) {
         submitQuantity.addActionListener(e);
     }
-
-    public int getQuantityField(){
+    /**
+     * Retrieves the value from the quantity field.
+     *
+     * @return the quantity to be added
+     */
+    public int getQuantityField() {
         return Integer.valueOf(quantityField.getText());
     }
-
-    public void disposeQuantity(){
+    /**
+     * Disposes of the quantity prompt.
+     */
+    public void disposeQuantity() {
         quantityAddPrompt.dispose();
     }
-
+    /**
+     * Prompts the user to select an item for a price change.
+     */
     public void promptItemForPriceChange() {
         slotPricePrompt = new JFrame("Testing Features");
         slotPricePrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -458,7 +585,7 @@ public class VendingMachineFactoryView{
         slotHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         slotField = new JTextField();
-        slotField.setPreferredSize(new Dimension(300,50));
+        slotField.setPreferredSize(new Dimension(300, 50));
 
         JPanel slotPrompt = new JPanel();
         slotPrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -476,19 +603,31 @@ public class VendingMachineFactoryView{
 
         slotPricePrompt.setVisible(true);
     }
-
-    public void setSubmitSlotAction(ActionListener e){
+    /**
+     * Sets the action listener for the slot submission button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setSubmitSlotAction(ActionListener e) {
         submitSlot.addActionListener(e);
     }
-
-    public int getSlotField(){
+    /**
+     * Retrieves the value from the slot field.
+     *
+     * @return the number of the item for which the price is to be set
+     */
+    public int getSlotField() {
         return Integer.valueOf(slotField.getText());
     }
-
-    public void disposeSlot(){
+    /**
+     * Disposes of the slot prompt.
+     */
+    public void disposeSlot() {
         slotPricePrompt.dispose();
     }
-
+    /**
+     * Prompts the user to enter the new price for an item.
+     */
     public void promptNewPrice() {
         newPrice = new JFrame("Testing Features");
         newPrice.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -503,7 +642,7 @@ public class VendingMachineFactoryView{
         priceHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         priceField = new JTextField();
-        priceField.setPreferredSize(new Dimension(300,50));
+        priceField.setPreferredSize(new Dimension(300, 50));
 
         JPanel pricePrompt = new JPanel();
         pricePrompt.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -521,19 +660,32 @@ public class VendingMachineFactoryView{
 
         newPrice.setVisible(true);
     }
-
-    public void setSubmitPriceAction(ActionListener e){
+    /**
+     * Sets the action listener for the price submission button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setSubmitPriceAction(ActionListener e) {
         submitPrice.addActionListener(e);
     }
-
-    public int getPriceField(){
+    /**
+     * Retrieves the value from the price field.
+     *
+     * @return the new price to be set
+     */
+    public int getPriceField() {
         return Integer.valueOf(priceField.getText());
     }
 
-    public void disposePrice(){
+    /**
+     * Disposes of the price prompt.
+     */
+    public void disposePrice() {
         newPrice.dispose();
     }
-
+    /**
+     * Prompts the user to enter the denomination to replenish.
+     */
     public void promptDenominationToReplenish() {
         denominationPrompt = new JFrame("Testing Features");
         denominationPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -548,7 +700,7 @@ public class VendingMachineFactoryView{
         denominationHeader.setAlignmentX(CENTER_ALIGNMENT);
 
         denominationField = new JTextField();
-        denominationField.setPreferredSize(new Dimension(300,50));
+        denominationField.setPreferredSize(new Dimension(300, 50));
 
         submitDenomination = new JButton();
         submitDenomination.setText("Submit");
@@ -563,19 +715,31 @@ public class VendingMachineFactoryView{
 
         denominationPrompt.setVisible(true);
     }
-
-    public void setDenominationAction(ActionListener e){
+    /**
+     * Sets the action listener for the denomination submission button.
+     *
+     * @param e the action listener to be added
+     */
+    public void setDenominationAction(ActionListener e) {
         submitDenomination.addActionListener(e);
     }
-
-    public int getDenominationField(){
+    /**
+     * Retrieves the value from the denomination field.
+     *
+     * @return the denomination to be replenished
+     */
+    public int getDenominationField() {
         return Integer.valueOf(denominationField.getText());
     }
-
-    public void disposeDenomination(){
+    /**
+     * Disposes of the denomination prompt.
+     */
+    public void disposeDenomination() {
         denominationPrompt.dispose();
     }
-
+    /**
+     * Displays an error message if no vending machine has been created.
+     */
     public void displayNoVendingMachineError() {
         JOptionPane.showMessageDialog(null, "No vending machine created. Please create a vending machine first.", "Vending Machine Factory", JOptionPane.ERROR_MESSAGE, null);
     }
