@@ -45,6 +45,7 @@ public class VendingMachineController {
         if (change != null) {
             view.displayDispensing(item);
             view.displayChange(change); // Display the change
+            model.setBalance(0); // Reset the balance after giving change
         }
     }
 

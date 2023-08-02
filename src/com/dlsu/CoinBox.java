@@ -44,6 +44,10 @@ public class CoinBox {
         if (remaining > 0) {
             System.out.println("Sorry, not enough change. Transaction cancelled.");
             this.funds -= amount;
+            // Add the deducted coins back to the change map
+            for (Map.Entry<Integer, Integer> entry : change.entrySet()) {
+                this.change.put(entry.getKey(), this.change.get(entry.getKey()) + entry.getValue());
+            }
             return null;
         }
 

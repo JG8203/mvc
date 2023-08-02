@@ -64,7 +64,7 @@ public class VendingMachineModel {
         Map<Integer, Integer> change = this.coinBox.returnChange(remainingBalanceAfterPurchase);
 
         if (change != null) {
-            this.balance -= item.getPrice();
+            this.balance = remainingBalanceAfterPurchase;
 
             // After a successful transaction, add it to the history
             Transaction transaction = new Transaction(item, 1, item.getPrice());

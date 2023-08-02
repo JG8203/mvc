@@ -46,12 +46,10 @@ public class SpecialVendingMachineModel extends VendingMachineModel {
         double totalCalories = baseItem.getCalories();
         double totalPrice = baseItem.getPrice();
         List<String> actions = new ArrayList<>();
-        for(String choice : choices){
+        for (String choice : choices) {
             this.handleChoice(Integer.parseInt(choice), baseItem, totalCalories, totalPrice, actions);
         }
-        this.setBalance(this.getBalance() - (int)totalPrice);
-        int remainingBalance = this.getBalance();
-        this.setBalance(0);
-        return remainingBalance;
+        this.setBalance(this.getBalance() - (int) totalPrice);
+        return this.getBalance(); // Return the remaining balance
     }
 }

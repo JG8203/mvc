@@ -4,14 +4,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class SpecialVendingMachineView extends VendingMachineView {
     private static final float CENTER_ALIGNMENT = 0;
@@ -109,27 +106,82 @@ public class SpecialVendingMachineView extends VendingMachineView {
         added.dispose();
     }
 
-    public void displayAdded(){
+    public void displayAdded(List<Item> selectedAddOns) {
         additional = new JFrame();
         additional.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        additional.setSize(new Dimension(500,400));
+        additional.setSize(new Dimension(500, 400));
         additional.setResizable(false);
         additional.setLayout(new FlowLayout());
         additional.setTitle("Added Items");
-
         additional.setVisible(true);
+
+        for (Item item : selectedAddOns) {
+            addAddOn(item);
+            try {
+                // Wait for the previous progress bar to finish
+                Thread.sleep(determineDelay(item.getAction()) + 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void addAddOn(Item item){
+
+
+    public void addAddOn(Item item) {
         JPanel itemPanel = new JPanel();
-        itemPanel.setLayout(null);
+        itemPanel.setLayout(new GridLayout(1, 1));
 
-        JLabel itemLabel = new JLabel(item.getName()+" Added");
+        // Use the action attribute from the item to create the label
+        JLabel itemLabel = new JLabel("<html>" + item.getAction() + " " + item.getName() + "<br/></html>");
         itemLabel.setFont(new Font("Arial", Font.BOLD, 12));
-
         itemPanel.add(itemLabel);
 
+        // Create a progress bar
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setMinimum(0);
+        progressBar.setMaximum(100);
+        progressBar.setValue(0);
+        itemPanel.add(progressBar);
+
+        // Determine the delay based on the action
+        int delay = determineDelay(item.getAction());  // You need to implement this method
+
+        // Create a timer that updates the progress bar every 100 ms
+        Timer timer = new Timer(100, new ActionListener() {
+            private int counter = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                counter++;
+                progressBar.setValue(counter);
+
+                // When the counter reaches 100, stop the timer
+                if (counter >= 100) {
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
+        timer.setInitialDelay(delay);
+        timer.start();
+
         additional.add(itemPanel);
+
+        // Refresh the JFrame to reflect changes
+        additional.revalidate();
+        additional.repaint();
     }
 
+    private int determineDelay(String action) {
+        switch (action) {
+            case "Slicing":
+                return 1000;  // 1 second delay
+            case "Adding":
+                return 2000;  // 2 seconds delay
+            case "Squeezing":
+                return 3000;
+            default:
+                return 0;
+        }
+    }
 }
