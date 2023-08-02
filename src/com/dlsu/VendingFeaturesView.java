@@ -4,6 +4,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+/**
+ * The VendingFeaturesView class represents the graphical user interface for the vending machine features.
+ * It allows users to view available items, insert money, buy items, and customize products (for special vending machines).
+ */
 public class VendingFeaturesView {
     private static final float CENTER_ALIGNMENT = 0;
     private static final int CENTER = 0;
@@ -27,7 +31,11 @@ public class VendingFeaturesView {
     JButton submitCustomize;
 
 
-
+    /**
+     * Displays the vending machine menu with a list of available slots and buttons for various actions.
+     *
+     * @param slots A list of Slot objects representing the available slots in the vending machine.
+     */
     public void displayMenu(List<Slot> slots) {
         features = new JFrame("Vending Machine Factory");
         features.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -120,25 +128,48 @@ public class VendingFeaturesView {
         features.setVisible(true);
     }
 
+    /**
+     * Sets the action listener for the "Insert Money" button.
+     *
+     * @param e The ActionListener to be associated with the "Insert Money" button.
+     */
     public void setInsertAction(ActionListener e){
         insert.addActionListener(e);
     }
-
+    /**
+     * Sets the action listener for the "Buy Item" button.
+     *
+     * @param e The ActionListener to be associated with the "Buy Item" button.
+     */
     public void setBuyItemAction(ActionListener e){
         buyItem.addActionListener(e);
     }
-
+    /**
+     * Sets the action listener for the "Customize" button.
+     * This method is applicable for special vending machines only.
+     *
+     * @param e The ActionListener to be associated with the "Customize" button.
+     */
     public void setCustomizeAction(ActionListener e){
         customize.addActionListener(e);
     }
-
+    /**
+     * Sets the action listener for the "Back" button.
+     *
+     * @param e The ActionListener to be associated with the "Back" button.
+     */
     public void setBackAction(ActionListener e){
         back.addActionListener(e);
     }
-    
+    /**
+     * Disposes of the "Insert Money" prompt window.
+     */
     public void disposeInsertMoney(){
         insertPrompt.dispose();
     }
+    /**
+     * Displays the "Insert Money" prompt window where users can insert bills.
+     */
     public void displayInsertMoneyPrompt() {
         insertPrompt = new JFrame("Insert Bills");
         insertPrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -200,18 +231,30 @@ public class VendingFeaturesView {
         insertPrompt.setVisible(true);
         System.out.println("Enter the bills you want to insert by clicking the buttons:");
     }
+    /**
+     * Sets the action listener for the "Submit" button in the "Insert Money" prompt window.
+     *
+     * @param e The ActionListener to be associated with the "Submit" button.
+     */
     public void setSubmitInsertAction(ActionListener e){
         submitInsert.addActionListener(e);
     }
 
+    /**
+     * Retrieves the inserted money from the "Insert Money" prompt window.
+     *
+     * @return A string containing the inserted bills, separated by spaces.
+     */
     public String getInsertField(){
         return insertField.getText();
     }
-
     public void disposeItemPrompt(){
         insertPrompt.dispose();
     }
 
+    /**
+     * Disposes of the "Buy Item" prompt window.
+     */
     public void displayBuyItemPrompt() {
         buyPrompt = new JFrame("Buy Item");
         buyPrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -242,10 +285,20 @@ public class VendingFeaturesView {
         buyPrompt.setVisible(true);
     }
 
+    /**
+     * Sets the action listener for the "Submit" button in the "Buy Item" prompt window.
+     *
+     * @param e The ActionListener to be associated with the "Submit" button.
+     */
     public void setSubmitBuyAction(ActionListener e){
         submitBuy.addActionListener(e);
     }
 
+    /**
+     * Retrieves the item number entered by the user in the "Buy Item" prompt window.
+     *
+     * @return The item number to be bought.
+     */
     public int getBuyField(){
         return Integer.valueOf(buyField.getText());
     }
@@ -253,10 +306,17 @@ public class VendingFeaturesView {
     public void disposeBuyPrompt(){
         buyPrompt.dispose();
     }
-    
+    /**
+     * Disposes of the "Customize Item" prompt window.
+     * This method is applicable for special vending machines only.
+     */
     public void disposeCustomizeProductPrompt(){
         customizePrompt.dispose();
     }
+    /**
+     * Displays the "Customize Item" prompt window where users can enter the number of the base item they want to customize.
+     * This method is applicable for special vending machines only.
+     */
     public void displayCustomizeProductPrompt() {
         customizePrompt = new JFrame("Customize Item");
         customizePrompt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -287,22 +347,38 @@ public class VendingFeaturesView {
         customizePrompt.setVisible(true);
     }
 
+    /**
+     * Sets the action listener for the "Submit" button in the "Customize Item" prompt window.
+     * This method is applicable for special vending machines only.
+     *
+     * @param e The ActionListener to be associated with the "Submit" button.
+     */
     public void setSubmitCustomizeAction(ActionListener e){
         submitCustomize.addActionListener(e);
     }
-
+    /**
+     * Retrieves the base item number entered by the user in the "Customize Item" prompt window.
+     * This method is applicable for special vending machines only.
+     *
+     * @return The base item number to be customized.
+     */
     public int getCustomizeField(){
         return Integer.valueOf(customizeField.getText());
     }
 
+
     public void disposeCustomizePrompt(){
         customizePrompt.dispose();
     }
-
+    /**
+     * Disposes of the main vending machine features window.
+     */
     public void disposeFeatures(){
         features.dispose();
     }
-
+    /**
+     * Displays an error message indicating an invalid choice to the user.
+     */
     public void displayInvalidChoice(){
         JOptionPane.showMessageDialog(null, "Invalid choice. Please try again.", "Vending Machine", JOptionPane.ERROR_MESSAGE, null);
     }

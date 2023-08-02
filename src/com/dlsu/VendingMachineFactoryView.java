@@ -47,6 +47,7 @@ public class VendingMachineFactoryView {
     JFrame denominationPrompt;
     JTextField denominationField;
     JButton submitDenomination;
+    JButton displayStatus;
 
     /**
      * Disposes and frees the main menu. This is called when the application is destroyed and can be re - used
@@ -392,6 +393,10 @@ public class VendingMachineFactoryView {
         displayMaintenance.add(maintenanceOptions, BorderLayout.CENTER);
 
         displayMaintenance.setVisible(true);
+
+    }
+    public void setDisplayStatusAction(ActionListener e) {
+        displayStatus.addActionListener(e);
     }
     /**
      * Adds an action listener for the restock button.

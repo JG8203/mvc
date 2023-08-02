@@ -65,8 +65,9 @@ public class VendingMachineFactoryController {
             * @param e - The ActionEvent that caused this method to be called
             */
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 view.disposeMainMenu();
+                System.exit(0); // Terminate the application
             }
         });
     }
@@ -255,6 +256,7 @@ public class VendingMachineFactoryController {
                 });
             }
         });
+
 
         view.setCollectAction(new ActionListener(){
             /**

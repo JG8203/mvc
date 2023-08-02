@@ -1,4 +1,11 @@
-public class Slot {
+/**
+ * The Slot class represents a vending machine slot that holds a specific item along with its quantity.
+ * It is typically used in an vending machine to manage the available quantity of an item in a specific slot.
+ *
+ * Each slot can hold an item and the maximum quantity allowed for that item in the slot.
+ * When creating a slot, you can specify the initial item and quantity, and the maximum quantity allowed in the slot (default is 10).
+ */
+ public class Slot {
     private Item item;
     private int quantity;
     private int maxQuantity;
@@ -55,5 +62,9 @@ public class Slot {
     */
     public int getMaxQuantity() {
         return maxQuantity;
+    }
+    public Slot clone() {
+        Item clonedItem = new Item(item.getName(), item.getPrice(), item.getCalories(), item.getType(), item.getAction()); // Assuming constructor of Item class
+        return new Slot(clonedItem, this.quantity);
     }
 }

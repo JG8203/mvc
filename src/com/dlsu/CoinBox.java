@@ -1,5 +1,22 @@
 import java.util.*;
-
+/**
+ * The CoinBox class represents a virtual coin box that manages funds and change denominations.
+ * Users can add funds, deduct funds, and request change from the coin box.
+ * The coin box maintains a collection of change denominations and their respective quantities.
+ * It also keeps track of the total funds in the account.
+ *
+ * The class provides methods to:
+ * - Add funds to the account by incrementing the change counters for each denomination.
+ * - Deduct funds from the account to prevent unauthorized access to money.
+ * - Return change by calculating the denominations to be deducted from the account based on the requested amount.
+ * - Get the current amount of funds in the account, which may be negative in case of charges or debits.
+ * - Set the amount of funds in the account, which is used to determine the money transferred to the bank during purchase.
+ * - Get and set the map of change denominations and their respective quantities used for making change.
+ *
+ * Note: The class assumes the availability of certain fixed denominations (1, 5, 10, 20, 100, 200, 500, and 1000),
+ * with their respective initial quantities set to 100 in the coin box.
+ *
+ */
 public class CoinBox {
     private int funds;
     private Map<Integer, Integer> change = new HashMap<>();

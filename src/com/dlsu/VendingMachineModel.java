@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -193,11 +194,14 @@ public class VendingMachineModel {
     }
 
     /**
-    * Collects funds from coin box and sets them to 0. This is useful for testing purposes to ensure that payments are collected
-    */
-    public void collectPayment() {
+     * Collects funds from coin box and sets them to 0. This is useful for testing purposes to ensure that payments are collected
+     *
+     * @return
+     */
+    public int collectPayment() {
         int collectedFunds = this.coinBox.getFunds();
         this.coinBox.setFunds(0);
+        return collectedFunds;
     }
 
     /**
@@ -212,4 +216,12 @@ public class VendingMachineModel {
             this.coinBox.getChange().put(denomination, this.coinBox.getChange().get(denomination) + quantity);
         }
     }
+    public List<Slot> captureState() {
+        List<Slot> state = new ArrayList<>();
+        for (Slot slot : this.slots) {
+            state.add(slot.clone()); // Assuming Slot class has a clone method to create a deep copy
+        }
+        return state;
+    }
+
 }

@@ -1,7 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
+/**
+ * The Item class represents an item in a menu or inventory with properties like name, price, calories, type, ingredients, and action.
+ *
+ * Each item can be of three types:
+ * - 'base': Base item used as the main component of a menu item.
+ * - 'addon': Add-on item that can be added to a base item to customize it.
+ * - 'product': Fully assembled product available for purchase.
+ *
+ * Items can have a name, price, calories, and a user-defined action. They can also have a list of ingredients, which are other items associated with them, in case the item is a 'base' or 'addon'.
+ */
+
+ public class Item {
     private String name;
     private int price;
     private int calories;
