@@ -154,6 +154,7 @@ public class VendingFeaturesView {
         insertField = new JTextField();
         insertField.setPreferredSize(new Dimension(300, 50));
         insertField.setEditable(false);
+        insertField.setVisible(false);
 
         JPanel buttonsPanel = new JPanel();
         int[] denominations = {1, 5, 10, 20, 100, 200, 500, 1000};
